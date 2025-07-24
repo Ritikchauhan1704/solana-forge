@@ -24,7 +24,7 @@ export default function App() {
             {/* Navbar */}
             <nav className="sticky top-0 z-50 bg-gradient-to-r from-black/80 via-black/60 to-purple-900/50 backdrop-blur-md p-5 flex justify-between items-center shadow-lg">
               <h1 className="text-3xl font-extrabold text-purple-300 tracking-wide">
-                Solana Dev Tools
+                Sol Forge
               </h1>
               <div className="flex items-center gap-3">
                 <SolBalance />

@@ -1,69 +1,70 @@
-# React + TypeScript + Vite
+# Sol Forge
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Sol Forge is a sleek and modern web application built for interacting with the Solana blockchain. It provides a user-friendly interface for common wallet operations on the devnet, making it an excellent tool for developers and enthusiasts to test and experiment with Solana.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Wallet Connectivity:** Seamlessly connect to your favorite Solana wallets using the Solana Wallet Adapter.
+- **Balance Display:** View your current SOL balance in real-time.
+- **Airdrop Requester:** Quickly request SOL from the devnet faucet to fund your test wallet.
+- **Token Sender:** Easily send SOL to any other Solana wallet address.
+- **Message Signing:** Sign custom messages with your wallet to verify ownership.
+- **Modern UI:** A beautiful, responsive interface built with Tailwind CSS, featuring a dark, futuristic theme.
+- **Notifications:** Get instant feedback on your actions with toast notifications.
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- [React](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/)
+- [Solana Wallet Adapter](https://github.com/solana-labs/wallet-adapter)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Sonner](https://sonner.emilkowal.ski/) for notifications
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🚀 Getting Started
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+Follow these instructions to get a local copy up and running.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Prerequisites
+
+- [Node.js](https://nodejs.org/en/) (v18 or later recommended)
+- [Bun](https://bun.sh/) (optional, but recommended for faster installation)
+
+### Installation
+
+1.  Clone the repository:
+    ```sh
+    git clone https://github.com/your-username/solana-forge.git
+    cd solana-forge
+    ```
+
+2.  Install the dependencies:
+    ```sh
+    bun install
+    ```
+    or if you prefer npm:
+    ```sh
+    npm install
+    ```
+
+### Running the Application
+
+Start the development server:
+
+```sh
+bun run dev
+```
+or
+```sh
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Open [http://localhost:5173](http://localhost:5173) (or the address shown in your terminal) in your browser to see the application.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 💡 Usage
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1.  **Connect Your Wallet:** Click the "Select Wallet" button to connect your Solana wallet (e.g., Phantom, Solflare). Ensure your wallet is set to the **Devnet**.
+2.  **Request an Airdrop:** If you need funds for testing, use the "Request Airdrop" feature to get some devnet SOL.
+3.  **Send Tokens:** Transfer SOL to another wallet by entering the recipient's address and the amount.
+4.  **Sign a Message:** Verify your wallet's ownership by typing a message and signing it.
+
