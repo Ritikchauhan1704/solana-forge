@@ -13,8 +13,37 @@ import SolBalance from "./components/SolBalance";
 import SendTokens from "./components/SendTokens";
 import { SignMessage } from "./components/SignMessage";
 import { Toaster } from "sonner";
+import { useState } from "react";
 
 export default function App() {
+  const [activeSection, setActiveSection] = useState("airdrop");
+
+  const renderSection = () => {
+    switch (activeSection) {
+      case "airdrop":
+        return <RequestAirDrop />;
+      case "send":
+        return <SendTokens />;
+      case "sign":
+        return <SignMessage />;
+      default:
+        return <RequestAirDrop />;
+    }
+  };
+
+  const getSectionTitle = () => {
+    switch (activeSection) {
+      case "airdrop":
+        return "Request Airdrop";
+      case "send":
+        return "Send Tokens";
+      case "sign":
+        return "Sign Message";
+      default:
+        return "Request Airdrop";
+    }
+  };
+
   return (
     <ConnectionProvider endpoint="https://api.devnet.solana.com">
       <WalletProvider wallets={[]} autoConnect>
@@ -34,29 +63,47 @@ export default function App() {
             </nav>
 
             {/* Main Content */}
-            <main className="p-6 md:p-10 grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {/* Request Airdrop Section */}
-              <section className="bg-black/30 backdrop-blur-lg rounded-2xl p-6 shadow-xl hover:shadow-2xl hover:shadow-purple-900/50 transition-all duration-300">
-                <h2 className="text-2xl font-semibold text-purple-300 mb-6 text-center">
+            <main className="p-6 md:p-10 flex flex-col items-center">
+              {/* Section Buttons */}
+              <div className="flex gap-4 mb-8">
+                <button
+                  onClick={() => setActiveSection("airdrop")}
+                  className={`px-6 py-2 rounded-xl transition-all duration-200 ${
+                    activeSection === "airdrop"
+                      ? "bg-purple-600 shadow-lg"
+                      : "bg-black/30 hover:bg-purple-900/50"
+                  }`}
+                >
                   Request Airdrop
-                </h2>
-                <RequestAirDrop />
-              </section>
-
-              {/* Send Tokens Section */}
-              <section className="bg-black/30 backdrop-blur-lg rounded-2xl p-6 shadow-xl hover:shadow-2xl hover:shadow-purple-900/50 transition-all duration-300">
-                <h2 className="text-2xl font-semibold text-purple-300 mb-6 text-center">
+                </button>
+                <button
+                  onClick={() => setActiveSection("send")}
+                  className={`px-6 py-2 rounded-xl transition-all duration-200 ${
+                    activeSection === "send"
+                      ? "bg-purple-600 shadow-lg"
+                      : "bg-black/30 hover:bg-purple-900/50"
+                  }`}
+                >
                   Send Tokens
-                </h2>
-                <SendTokens />
-              </section>
-
-              {/* Sign Message Section */}
-              <section className="bg-black/30 backdrop-blur-lg rounded-2xl p-6 shadow-xl hover:shadow-2xl hover:shadow-purple-900/50 transition-all duration-300">
-                <h2 className="text-2xl font-semibold text-purple-300 mb-6 text-center">
+                </button>
+                <button
+                  onClick={() => setActiveSection("sign")}
+                  className={`px-6 py-2 rounded-xl transition-all duration-200 ${
+                    activeSection === "sign"
+                      ? "bg-purple-600 shadow-lg"
+                      : "bg-black/30 hover:bg-purple-900/50"
+                  }`}
+                >
                   Sign Message
+                </button>
+              </div>
+
+              {/* Single Section */}
+              <section className="w-full max-w-2xl bg-black/30 backdrop-blur-lg rounded-2xl p-6 shadow-xl hover:shadow-2xl hover:shadow-purple-900/50 transition-all duration-300">
+                <h2 className="text-2xl font-semibold text-purple-300 mb-6 text-center">
+                  {getSectionTitle()}
                 </h2>
-                <SignMessage />
+                {renderSection()}
               </section>
             </main>
           </div>

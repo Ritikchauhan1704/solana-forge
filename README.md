@@ -12,6 +12,23 @@ Sol Forge is a sleek and modern web application built for interacting with the S
 - **Modern UI:** A beautiful, responsive interface built with Tailwind CSS, featuring a dark, futuristic theme.
 - **Notifications:** Get instant feedback on your actions with toast notifications.
 
+
+## 🖼️ Screenshots
+
+### Home Page
+![Home Page](public/img/1.png)
+
+### Request Airdrop
+![Request Airdrop](public/img/2.png)
+
+### Send Tokens
+![Send Tokens](public/img/3.png)
+
+### Sign Message
+![Sign Message](public/img/4.png)
+
+
+
 ## 🛠️ Tech Stack
 
 - [React](https://reactjs.org/)
