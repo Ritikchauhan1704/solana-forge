@@ -12,6 +12,7 @@ import "@solana/wallet-adapter-react-ui/styles.css";
 import RequestAirDrop from "./components/RequestAirDrop";
 import { Toaster } from "sonner";
 import SolBalance from "./components/SolBalance";
+import SendTokens from "./components/SendTokens";
 
 export default function App() {
   return (
@@ -32,6 +33,7 @@ export default function App() {
 
               <RequestAirDrop />
               <SolBalance />
+              <SendTokens />
             </div>
           </div>
         </WalletModalProvider>
