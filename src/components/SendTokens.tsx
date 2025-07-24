@@ -39,20 +39,17 @@ const schema = z.object({
 export default function SendTokens() {
   const wallet = useWallet();
   const { connection } = useConnection();
-
   const [amount, setAmount] = useState("");
   const [receiver, setReceiver] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const result = schema.safeParse({ amount, receiver });
     if (!result.success) {
       toast.error(result.error.errors[0].message);
       return;
     }
-
     try {
       setLoading(true);
       const transaction = new Transaction().add(
@@ -81,7 +78,6 @@ export default function SendTokens() {
         <h2 className="text-xl text-purple-300 font-semibold text-center">
           Send SOL Tokens
         </h2>
-
         <div className="space-y-1">
           <label className="text-sm text-purple-400">Amount (SOL)</label>
           <input
@@ -93,7 +89,6 @@ export default function SendTokens() {
             className="w-full bg-black/40 text-white placeholder-purple-500 px-5 py-3 rounded-xl border border-purple-500/30 focus:outline-none focus:ring-2 focus:ring-purple-500 transition disabled:opacity-50"
           />
         </div>
-
         <div className="space-y-1">
           <label className="text-sm text-purple-400">Receiver Address</label>
           <input
@@ -105,13 +100,38 @@ export default function SendTokens() {
             className="w-full bg-black/40 text-white placeholder-purple-500 px-5 py-3 rounded-xl border border-purple-500/30 focus:outline-none focus:ring-2 focus:ring-purple-500 transition disabled:opacity-50"
           />
         </div>
-
         <button
           type="submit"
-          disabled={loading}
-          className="w-full bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white font-bold py-3 rounded-xl shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+          disabled={loading || !wallet.publicKey}
+          className={`w-full py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center group ${
+            loading || !wallet.publicKey
+              ? 'bg-gray-600 cursor-not-allowed'
+              : 'bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 hover:cursor-pointer'
+          } text-white`}
         >
-          {loading ? "🚀 Sending..." : "✅ Send Tokens"}
+          {loading ? (
+            <>
+              <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white mr-2"></div>
+              Sending...
+            </>
+          ) : (
+            <>
+              <svg
+                className="w-6 h-6 mr-2 group-hover:rotate-90 transition-transform duration-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                />
+              </svg>
+              {!wallet.publicKey ? 'Connect Wallet First' : 'Send Tokens'}
+            </>
+          )}
         </button>
       </form>
     </div>
