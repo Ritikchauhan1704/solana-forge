@@ -2,7 +2,7 @@
 
 Sol Forge is a sleek and modern web application built for interacting with the Solana blockchain. It provides a user-friendly interface for common wallet operations on the devnet, making it an excellent tool for developers and enthusiasts to test and experiment with Solana.
 
-## ✨ Features
+## Features
 
 - **Wallet Connectivity:** Seamlessly connect to your favorite Solana wallets using the Solana Wallet Adapter.
 - **Balance Display:** View your current SOL balance in real-time.
